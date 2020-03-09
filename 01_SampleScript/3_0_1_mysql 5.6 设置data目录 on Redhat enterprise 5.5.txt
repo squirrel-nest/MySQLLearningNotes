@@ -1,0 +1,103 @@
+mysql 5.6 设置data目录 on Redhat enterprise 5.5(2013-04-23 17:23:20)转载▼标签： mysqlselinux  
+默认data目录 /var/lib/mysql
+挂载到/目录，一共就10G大小，blast比对一个表就10多G
+
+1）停止mysql服务
+       root, service mysql stop;
+2) 新建目录
+      root, mkdir /home/data;
+3) 复制原目录
+      root, cp -R /var/lib/mysql /home/data
+4) 备份原目录
+      root, mv /var/lib/mysql /var/lib/mysql-backup;
+5) 创建软链接
+      root, ln -s /home/data/mysql /var/lib/mysql;
+6）设置权限
+      chown -R mysql:mysql /home/data/mysql
+      chown -h mysql:mysql /var/lib/mysql
+
+RHEL默认安装了selinux，访问mysql目录都需要标签，按照原先修改/etc/my.cnf的方法，更换data目录，一直没成功。
+新创建的目录及链接同样需要修改selinux的content type
+        chcon -R -t mysqld_db_t /home/data/mysql
+        chcon -h mysqld_db_t /var/lib/mysql
+
+最后，重新启动mysql: service mysqld start
+
+
+-----------------------------
+mkdir rm_sz
+
+chown -R mysql:mysql rm*
+
+chown mysql rm_sz
+chgrp mysql rm_sz
+
+cp -r -a rm_sz /data3/mysql/data/
+
+ln -s /data3/mysql/data/rm_sz /usr/local/mysql/data/rm_sz --前面为实际目录，后面为连接
+
+
+====----mariadb custom data setting---=========
+systemctl stop mariadb
+
+systemctl status mariadb
+
+
+4) 备份原目录
+      root, mv /var/lib/mysql /var/lib/mysql-backup;
+
+cd /var/lib
+mv mysql mysql_backup
+
+
+
+mkdir /data/mysql/data
+
+chown mysql:mysql /data/mysql
+
+cp mysql_backup/*.* /data/mysql/data/
+
+# ln -s /data/mysql/data /var/lib/mysql;  --前面为实际目录，后面为连接
+
+
+/etc/my.cnf修改为：
+
+
+[mysqld]
+#datadir=/var/lib/mysql
+datadir=/data/mysql/data
+socket=/var/lib/mysql/mysql.sock
+# socket=/data/mysql/mysql.sock
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+# Settings user and group are ignored when systemd is used.
+# If you need to run mysqld under a different user or group,
+# customize your systemd unit file for mariadb according to the
+# instructions in http://fedoraproject.org/wiki/Systemd
+
+[mysqld_safe]
+log-error=/var/log/mariadb/mariadb.log
+pid-file=/var/run/mariadb/mariadb.pid
+
+#
+# include all files from the config directory
+#
+!includedir /etc/my.cnf.d
+
+===========---mysql 5.7 data setting--================================
+1.
+cd /home
+mkdir mysql
+
+2.
+cd /usr/local/mysql/
+cp -r -f data /home/mysql/
+
+3.
+cd /home/mysql
+chown -R mysql:mysql *
+
+4.
+my.cnf
+	datadir=/home/mysql/data
+

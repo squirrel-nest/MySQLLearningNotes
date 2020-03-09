@@ -1,0 +1,136 @@
+注：多实例用：
+
+'/usr/local/mariadb/bin/mysqladmin' -u root password 'root123' --socket=/tmp/mariadb.sock
+'/usr/local/mariadb/bin/mysqladmin' -u root -h db.kernel.longzhi.com password 'root123' --socket=/tmp/mariadb.sock
+
+1.连接数据库
+mysql -u root -p --socket=/tmp/mariadb.sock;
+mysql -u root -p --socket=/tmp/mariadb_3305.sock;
+也可以：
+mysql -u root -p -P3305     -- 说明：-P表示端口；-p表示是Password
+2.查询用户信息
+SELECT User, Host, authentication_string FROM mysql.user;
+3.查版本信息
+SELECT VERSION();
+
+
+
+
+http://dev.mysql.com/doc/refman/5.0/en/default-privileges.html
+
+2.9.2 Securing the Initial MySQL Accounts
+
+mysql -u root mysql
+SELECT User, Host, Password FROM mysql.user;
+E:\Installs\Oracle\Software\Database\MySQL\mysql-advanced-5.6.14-winx64\bin>mysql -u root -p mysql
+
+mysql -h 132.121.82.100 -u root -p
+
+
+shell> mysql -u root
+mysql> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('newpwd');
+mysql> SET PASSWORD FOR 'root'@'127.0.0.1' = PASSWORD('newpwd');
+mysql> SET PASSWORD FOR 'root'@'::1' = PASSWORD('newpwd');
+mysql> SET PASSWORD FOR 'root'@'%' = PASSWORD('newpwd');
+
+shell> mysql -u root
+mysql> UPDATE mysql.user SET Password = PASSWORD('newpwd') WHERE User = 'root';
+mysql> FLUSH PRIVILEGES;
+
+shell> mysqladmin -u root password "newpwd" -- mysqladmin: [Warning] Using a password on the command line interface can be inse
+cure.
+shell> mysqladmin -u root -h host_name password "newpwd"
+
+
+6.3.2. Adding User Accounts
+
+mysql> CREATE USER 'monty'@'localhost' IDENTIFIED BY 'some_pass';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'monty'@'localhost'
+-> WITH GRANT OPTION;
+mysql> CREATE USER 'monty'@'%' IDENTIFIED BY 'some_pass';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'monty'@'%'
+-> WITH GRANT OPTION;
+mysql> CREATE USER 'admin'@'localhost';
+mysql> GRANT RELOAD,PROCESS ON *.* TO 'admin'@'localhost';
+mysql> CREATE USER 'dummy'@'localhost';
+
+
+
+
+CREATE USER 'root'@'192.168.1.101' IDENTIFIED BY 'root123';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.1.101'
+WITH GRANT OPTION;
+
+CREATE USER 'root'@'192.168.0.107' IDENTIFIED BY 'root123';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.0.107'
+WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+
+
+
+6.3.3 Removing User Accounts
+
+DROP USER 'root'@'%';
+
+FLUSH PRIVILEGES;
+
+13.7.1.1. CREATE USER Syntax
+
+CREATE USER 'root'@'132.97.221.219' IDENTIFIED BY '!13YXmcq';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'132.97.221.219'
+WITH GRANT OPTION;
+
+CREATE USER 'tool'@'132.97.221.219' IDENTIFIED BY 'tool123';
+GRANT ALL PRIVILEGES ON *.* TO 'tool'@'132.97.221.219'
+WITH GRANT OPTION;
+
+CREATE USER 'tool'@'132.97.221.219' IDENTIFIED BY 'tool123';
+GRANT ALL PRIVILEGES ON *.* TO 'tool'@'132.97.221.219'
+WITH GRANT OPTION;
+
+
+------mysql 外网登陆。为何要两个啊（实际是转换成映射的电脑登陆），不用第一个的！！！
+---------------------------------------------------------------------
+CREATE USER 'root'@'tomcat1.in.3322.org' IDENTIFIED BY 'root123Root';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'tomcat1.in.3322.org' WITH GRANT OPTION;
+
+CREATE USER 'root'@'192.168.0.12' IDENTIFIED BY 'root123';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.0.12' WITH GRANT OPTION;
+---------------------------------------------------------------------
+
+
+mysql> CREATE USER 'monty'@'localhost' IDENTIFIED BY 'some_pass';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'monty'@'localhost'
+-> WITH GRANT OPTION;
+mysql> CREATE USER 'monty'@'%' IDENTIFIED BY 'some_pass';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'monty'@'%'
+-> WITH GRANT OPTION;
+mysql> CREATE USER 'admin'@'localhost';
+mysql> GRANT RELOAD,PROCESS ON *.* TO 'admin'@'localhost';
+mysql> CREATE USER 'dummy'@'localhost';
+
+GRANT ALL PRIVILEGES ON *.* TO 'tool'@'%'
+
+
+CREATE USER 'gd4g'@'%' IDENTIFIED BY 'gd4g123';
+
+CREATE USER 'root'@'%' IDENTIFIED BY '!13YXmcq';
+
+mysql -u root -p --socket=/tmp/mysql_3311.sock
+
+UPDATE mysql.user SET Password = PASSWORD('root123') WHERE User = 'root';
+FLUSH PRIVILEGES;
+
+CREATE USER 'multi_admin'@'localhost' IDENTIFIED BY 'multi_admin123';
+grant shutdown on *.* to multi_admin@localhost identified by 'multi_admin123' with grant option;
+show grants for 'multi_admin'@'localhost';
+
+mysqld_multi --defaults-file=/usr/local/mysql/my-multi.cnf stop 3310
+
+
+
+ systemctl stop mysqld_multi.service
+
+
+13.7.1.3 DROP USER Syntax

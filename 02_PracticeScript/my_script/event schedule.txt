@@ -1,0 +1,28 @@
+show global variables like '%even%';
+
+show status like '%event%';
+
+set global event_scheduler=ON;
+
+
+select concat('create event ', 'evnt_', t.specific_name, ' on schedule ',  'every 2 day ', 'DO call ', t.specific_name ,';' )str,
+
+ t.* from information_schema.routines t where t.routine_schema = 'factdb' and t.specific_name like 'P_GIS%M';
+
+
+
+create event evnt_P_GIS_ODFPORTSERV_M on schedule every 2 day DO call P_GIS_ODFPORTSERV_M;
+create event evnt_P_GIS_ODFPORT_M on schedule every 2 day DO call P_GIS_ODFPORT_M;
+create event evnt_P_GIS_ODFSERV_M on schedule every 2 day DO call P_GIS_ODFSERV_M;
+create event evnt_P_GIS_ODF_M on schedule every 2 day DO call P_GIS_ODF_M;
+create event evnt_P_GIS_ODM on schedule every 2 day DO call P_GIS_ODM;
+create event evnt_P_GIS_ODMSERV_M on schedule every 2 day DO call P_GIS_ODMSERV_M;
+create event evnt_P_GIS_ODM_M on schedule every 2 day DO call P_GIS_ODM_M;
+create event evnt_P_GIS_OZDHPORTSERV_M on schedule every 2 day DO call P_GIS_OZDHPORTSERV_M;
+create event evnt_P_GIS_OZDHPORT_M on schedule every 2 day DO call P_GIS_OZDHPORT_M;
+create event evnt_P_GIS_OZDHSERV_M on schedule every 2 day DO call P_GIS_OZDHSERV_M;
+create event evnt_P_GIS_OZDH_M on schedule every 2 day DO call P_GIS_OZDH_M;
+
+SELECT * FROM MYSQL.EVENT
+
+drop event name

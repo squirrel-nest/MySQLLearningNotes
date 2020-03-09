@@ -1,0 +1,33 @@
+13.7.5.30. SHOW PROCESSLIST Syntax
+
+use INFORMATION_SCHEMA
+select * from INFORMATION_SCHEMA.PROCESSLIST
+select CONCAT('kill ',t.id, ';'), t.* from INFORMATION_SCHEMA.PROCESSLIST t;
+---------------------------
+unix/linux
+$mysqladmin processlist
+---------------------------
+mydql>SHOW FULL PROCESSLIST\G
+
+
+13.7.6.4. KILL Syntax
+13.7.6.4. KILL Syntax
+KILL [CONNECTION | QUERY] thread_id
+
+mysql>kill thread_id;
+
+4.5.2. mysqladmin ¡ª Client for Administering a MySQL Server
+kill id,id,...
+Kill server threads. If multiple thread ID values are given, there must be no spaces in the list.
+
+
+
+For even more speed when writing many rows at the same time, use LOCK TABLES. See Section 8.2.2.1, ¡°Speed of INSERT Statements¡±.
+
+
+lock_wait_timeout
+This variable specifies the timeout in seconds for attempts to acquire metadata locks. The permissible values range from 1 to
+31536000 (1 year). The default is 31536000.
+
+This timeout applies to all statements that use metadata locks. These include DML and DDL operations on tables, views, stored procedures,
+and stored functions, as well as LOCK TABLES, FLUSH TABLES WITH READ LOCK, and HANDLER statements.

@@ -1,0 +1,73 @@
+
+
+1.ssh连接到服务器。
+2.安装
+	E:\Installs\LinuxAndUnix\0_Linux\CentOS\2_Note\6_1_MariaDb\Install_note_192.168.0.104_Maria.txt
+
+  668  ps -ef |grep mysql
+  669  systemctl mysqld status
+  670  systemctl status mysqld
+  682  yum install mysql
+
+  697  systemctl status mysqld
+  698  systemctl status mysql
+
+  699  systemctl status mariadb  --mariadb数据库用这一条！！！
+  700  mariadb -version
+
+########################    701  mysqld -version
+########################    702  mysql -version
+########################    703  systemctl status mysql
+
+########################    704  systemctl status MySQL
+########################    705  systemctl status mysql.service
+########################    706  systemctl enable mysql.service
+########################    707  mysql -u root -p -h localhost
+########################    708  mysql -u root
+########################    709  mysqladmin -u root password "root123"
+
+systemctl status mariadb
+  717  sudo yum install mariadb-server
+
+
+3.启动
+  718  sudo systemctl start mariadb
+  719  sudo systemctl enable mariadb
+  720  sudo mysql_secure_installation
+
+4.连接到数据库。
+ mysql -h 192.168.0.104 -u root -p
+  992  mysql -h localhost -u root -p
+
+mysql -u root -p --socket=/tmp/mysql.sock
+1.连接数据库
+mysql -u root -p --socket=/tmp/mariadb.sock;
+mysql -u root -p --socket=/tmp/mariadb_3305.sock;
+也可以：
+mysql -u root -p -P3305     -- 说明：-P表示端口；-p表示是Password
+mysql -u root -p -h 192.168.0.104 -P 3307
+
+
+5.查询连接数据库使用的端口号或socket文件位置和名字：（如何查看mysql使用的是哪个配置文件：https://zhidao.baidu.com/question/1886943337559626468.html）
+
+查版本信息(查使用的数据库类型版本)
+SELECT VERSION();
+
+a.ps -ef | grep mysqld从配置的参数路径上判断
+b.SHOW VARIABLES;
+
+SHOW VARIABLES LIKE 'sock%'
+SHOW VARIABLES LIKE 'datadir'
+
+http://www.jb51.net/article/110395.htm
+1、查看是否使用了指定目录的my.cnf
+命令
+ps aux|grep mysql|grep 'my.cnf'
+2、查看mysql默认读取my.cnf的目录
+命令
+mysql --help|grep 'my.cnf'
+
+
+
+  993  firewall-cmd --add-port=3306/tcp
+

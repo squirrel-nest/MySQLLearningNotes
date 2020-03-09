@@ -1,0 +1,335 @@
+1.查询安装信息
+	yum repolist all | grep mysql
+
+全新安装
+http://dev.mysql.com/doc/mysql-yum-repo-quick-guide/en/
+
+A Quick Guide to Using the MySQL Yum Repository
+
+--更新安装（如有安装了其他第三方mysql）
+http://dev.mysql.com/doc/refman/5.6/en/updating-yum-repo.html
+2.10.1.1 Upgrading MySQL with the MySQL Yum Repository
+
+
+http://dev.mysql.com/doc/refman/5.6/en/linux-installation-yum-repo.html
+2.5.1 Installing MySQL on Linux Using the MySQL Yum Repository
+
+http://dev.mysql.com/doc/refman/5.6/en/replace-third-party-yum.html
+2.5.2 Replacing a Third-Party Distribution of MySQL Using the MySQL Yum Repository
+
+
+
+==----------
+http://lamphowto.com/
+
+chown -R root.root *
+
+make clean
+
+./configure \
+--prefix=/usr/local/mysql \
+--localstatedir=/usr/local/mysql/data \
+--disable-maintainer-mode \
+--with-mysqld-user=mysql \
+--with-unix-socket-path=/tmp/mysql.sock \
+--without-comment \
+--without-debug \
+--without-bench
+---=========================================================
+
+http://dev.mysql.com/doc/refman/5.7/en/binary-installation.html
+
+
+1.下载网址
+5.6.26社区版
+http://dev.mysql.com/downloads/mysql/
+
+wget http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.17-linux-glibc2.5-x86_64.tar.gz
+
+5.7.rc开发版
+http://dev.mysql.com/downloads/mysql/5.7.html
+
+
+wget http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.17-linux-glibc2.5-x86_64.tar.gz
+wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.19-linux-glibc2.12-x86_64.tar.gz"
+wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-linux-x64.tar.gz"
+
+2.解压
+tar zxvf mysql-5.7.18-linux-glibc2.5-x86_64.tar.gz
+
+3.
+
+To install and use a MySQL binary distribution, the command sequence looks like this:
+
+# Preconfiguration setup
+shell> groupadd mysql
+shell> useradd -r -g mysql -s /bin/false mysql
+# Beginning of source-build specific instructions
+shell> tar zxvf mysql-VERSION.tar.gz
+shell> cd mysql-VERSION
+shell> mkdir bld
+shell> cd bld
+shell> cmake ..
+shell> make
+shell> make install
+# End of source-build specific instructions
+# Postinstallation setup
+shell> cd /usr/local/mysql
+shell> chown -R mysql .
+shell> chgrp -R mysql .
+shell> bin/mysql_install_db --user=mysql # Before MySQL 5.7.6
+shell> bin/mysqld --initialize --user=mysql # MySQL 5.7.6 and up
+shell> bin/mysql_ssl_rsa_setup # MySQL 5.7.6 and up
+shell> chown -R root .
+shell> chown -R mysql data
+shell> bin/mysqld_safe --user=mysql &
+# Next command is optional
+shell> cp support-files/mysql.server /etc/init.d/mysql.server
+
+
+
+
+
+
+
+
+
+groupadd mysql
+useradd -g mysql -c "MySQL Server" mysql
+
+If you get any messages about the group or user already existing, that's fine. The goal is just to make sure we have them on the system.
+
+4.建到指定版本的mysql文件夹的link连接
+
+查mysql 的link：用命令 ls -ll or ls -la
+
+
+rm mysql
+
+
+To install and use a MySQL binary distribution, the basic command sequence looks like this:
+
+shell> groupadd mysql
+shell> useradd -r -g mysql mysql
+shell> cd /usr/local
+shell> tar zxvf /path/to/mysql-VERSION-OS.tar.gz
+
+tar zxvf mysql-5.7.17-linux-glibc2.5-x86_64.tar.gz
+
+cd /usr/local/
+shell> ln -s mysql-5.7.5-m15-linux-glibc2.5-x86_64 mysql
+
+ln -s mysql-5.7.19-linux-glibc2.5-x86_64 mysql
+
+ln -s /softwares/oracle/mysql/mysql-5.7.19-linux-glibc2.12-x86_64 mysql
+
+local目录下：
+shell> chown -R mysql mysql
+shell> chgrp -R mysql mysql
+
+
+
+shell> cd mysql
+shell> chown -R mysql .
+shell> chgrp -R mysql .
+以上两句 = shell> chown -R mysql:mysql mysql .
+
+5.拷贝my.cnf文件
+
+6.设置数据文件目录：参看：mysql 5.6 设置data目录 on Redhat enterprise 5.5.txt
+
+cd /home
+mkdir /home/mysql
+cd /home/mysql
+mkdir /home/mysql/data
+shell> chown -R mysql .
+shell> chgrp -R mysql .
+
+
+mysql_install_db 已过时 改为
+
+2.10.1.1 Initializing the Data Directory Manually Using mysqld
+
+###### shell> bin/mysql_install_db --user=mysql
+
+bin/mysql_install_db --user=mysql \
+         --basedir=/usr/local/mysql \
+         --datadir=/home/mysql/data
+
+shell> chown -R root .
+shell> chown -R mysql data
+shell> bin/mysqld_safe --user=mysql &
+# Next command is optional
+shell> cp support-files/mysql.server /etc/init.d/mysql.server
+
+
+
+
+
+
+
+
+
+
+
+
+
+2.2 Installing MySQL on Unix/Linux Using Generic Binaries
+
+To start mysqld at boot time you have to copy
+support-files/mysql.server to the right place for your system
+
+PLEASE REMEMBER TO SET A PASSWORD FOR THE MySQL root USER !
+To do so, start the server, then issue the following commands:
+
+  ./bin/mysqladmin -u root password 'new-password'
+  ./bin/mysqladmin -u root -h db.kernel.longzhi.com password 'new-password'
+
+Alternatively you can run:
+
+  ./bin/mysql_secure_installation
+
+which will also give you the option of removing the test
+databases and anonymous user created by default.  This is
+strongly recommended for production servers.
+
+See the manual for more instructions.
+
+You can start the MySQL daemon with:
+
+  cd . ; ./bin/mysqld_safe &
+
+You can test the MySQL daemon with mysql-test-run.pl
+
+  cd mysql-test ; perl mysql-test-run.pl
+
+Please report any problems at http://bugs.mysql.com/
+
+The latest information about MySQL is available on the web at
+
+  http://www.mysql.com
+
+Support MySQL by buying support/licenses at http://shop.mysql.com
+
+New default config file was created as ./my.cnf and
+will be used by default by the server when you start it.
+You may edit this file to change server settings
+
+WARNING: Default config file /etc/my.cnf exists on the system
+This file will be read by default by the MySQL server
+If you do not want to use this, either remove it, or use the
+--defaults-file argument to mysqld_safe when starting the server
+
+
+
+
+
+
+问题解决
+
+
+
+
+
+
+
+
+-bash: mysql: command not found
+
+http://tongzidane.blog.163.com/blog/static/58165892201181353317465/
+
+原因:这是由于系统默认会查找/usr/bin下的命令，如果这个命令不在这个目录下，当然会找不到命令，我们需要做的就是映射一个链接到/usr/bin目录下，相当于建立一个链接文件。
+首先得知道mysql命令或mysqladmin命令的完整路径，比如mysql的路径是：/usr/local/mysql/bin/mysql，我们则可以这样执行命令：
+
+# ln -s /usr/local/mysql/bin/mysql /usr/bin
+  ln -s /usr/local/mysql/bin/mysqladmin /usr/bin
+
+
+CREATE USER 'root'@'%' IDENTIFIED BY 'root123';
+
+---------------
+2015-02-26T20:38:27.311794Z 0 [ERROR] Can't find error-message file 'E:\Softwares\Oracle\Database\MySQL\0_Software\mysql
+-5.7.5-m15-winx64\share\errmsg.sys'. Check error-message file location and 'lc-messages-dir' configuration directive.
+
+解决：修改my.ini,basedir
+
+
+
+
+
+
+
+
+升级：mysql-5.7.12
+
+准备：
+
+set path=E:\Installs\Oracle\Softwares\Database\MySQL\mysql-5.6.13-winx64\bin mysqld --console
+
+MYSQL_HOME=E:\Softwares\Oracle\Database\MySQL\mysql-5.7.12-winx64
+
+C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\NetSarang;C:\app\Administrator\product\11.2.0\dbhome_1\bin;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;%JAVA_HOME%\bin;%MAVEN_HOME%\bin;%MYSQL_HOME%\bin;C:\Program Files (x86)\MySQL\MySQL Utilities\;%ANT_HOME%\bin;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Calibre2\
+
+
+
+
+
+
+
+
+2.3.5 Installing MySQL on Microsoft Windows Using a noinstall Zip Archive
+
+
+
+
+2.mysql_install_db --user=mysql --basedir=E:\Softwares\Oracle\Database\MySQL\mysql-5.7.17-winx64 --datadir=D:\MySqlDataDev\data_5.7.17 --已过时
+
+
+
+2.3.5.3 Selecting a MySQL Server Type
+
+2.3.5.4 Initializing the Data Directory
+
+As of 5.7.7, Windows installation operations performed using the Noinstall package do not include
+a data directory. To initialize the data directory, use the instructions at Section 2.10.1.1, “Initializing the
+Data Directory Manually Using mysqld”.
+
+2.3.5.5 Starting the Server for the First Time
+
+
+2.10.1.1 Initializing the Data Directory Manually Using mysqld
+
+
+2.11.1 Upgrading MySQL
+
+If you run MySQL Server on Windows, refer to the upgrade procedure described in Section 2.3.8,
+“Upgrading MySQL on Windows”.
+
+
+2.3.8 Upgrading MySQL on Windows
+
+10. As Administrator, run mysql_upgrade to check your tables, attempt to repair them if necessary, and
+update your grant tables if they have changed so that you can take advantage of any
+
+mysql_upgrade -u root
+
+See Section 5.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables”.
+
+
+
+附：查询版本信息
+
+Finally test that you have both instances running:
+[root@mariadb-near-mysql ~]# mysql -u root -p -e "SELECT VERSION();"
++-----------+
+| VERSION() |
++-----------+
+| 5.6.26    |
++-----------+
+[root@mariadb-near-mysql ~]#  mysql -u root -p -e "SELECT VERSION();" --socket=/tmp/mariadb.sock
+                              mysql -u root -p -e "SELECT VERSION();" --socket=/tmp/mysql.sock
++--------------------+
+| VERSION()          |
++--------------------+
+| 10.1.7-MariaDB-log |
++--------------------+

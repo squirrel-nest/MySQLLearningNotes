@@ -1,0 +1,5 @@
+1. wampserver
+2.http://127.0.0.1:80/
+”√ªß tool/tool123
+ftp:
+3.data/host1.err

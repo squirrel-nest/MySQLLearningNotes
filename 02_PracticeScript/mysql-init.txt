@@ -1,0 +1,2 @@
+# MySQL 5.7.6 and later:
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root123';

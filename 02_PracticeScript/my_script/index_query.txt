@@ -1,0 +1,13 @@
+SELECT DISTINCT
+    TABLE_NAME,
+    INDEX_NAME
+FROM INFORMATION_SCHEMA.STATISTICS
+WHERE TABLE_SCHEMA = 'FACTDB';
+
+
+SELECT table_name AS `Table`,
+       index_name AS `Index`,
+       GROUP_CONCAT(column_name ORDER BY seq_in_index) AS `Columns`
+FROM information_schema.statistics
+WHERE table_schema = 'FACTDB'
+GROUP BY 1,2;

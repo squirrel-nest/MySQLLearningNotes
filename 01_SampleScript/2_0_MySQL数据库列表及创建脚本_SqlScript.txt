@@ -1,0 +1,313 @@
+CREATE DATABASE users;
+
+----------------------------------------------
+CREATE DATABASE mydatabases;
+
+3、使用新的字符集创建新的数据库
+create database  mydata  default charset utf8;
+
+create database jira default character set utf8 collate utf8_bin;
+
+-------------
+--mysql AUTO_INCREMENT 的使用方式
+CREATE TABLE mydatabases (id MEDIUMINT NOT NULL AUTO_INCREMENT,name CHAR(30) NOT NULL,PRIMARY KEY (id));
+
+INSERT INTO mydatabases (name) VALUES ('mydatabases'),('users');
+
+SELECT * FROM mydatabases;
+
+drop table animals_1;
+CREATE TABLE animals_1 (
+id MEDIUMINT NOT NULL AUTO_INCREMENT,
+name CHAR(30) NOT NULL,
+PRIMARY KEY (id)
+);
+
+truncate table animals_1;
+ALTER TABLE animals_1 AUTO_INCREMENT = 1;
+
+insert into animals_1
+(select 0,name from animals);
+
+SELECT * FROM animals_1;
+
+
+mysql> delimiter //
+mysql> CREATE PROCEDURE dorepeat(p1 INT)
+-> BEGIN
+-> SET @x = 0;
+-> REPEAT SET @x = @x + 1; UNTIL @x > p1 END REPEAT;
+-> END
+-> //
+Query OK, 0 rows affected (0.00 sec)
+mysql> delimiter ;
+
+-- CREATE PROCEDURE
+mysql> DELIMITER |
+mysql> CREATE PROCEDURE myproc ()
+-> BEGIN
+-> DECLARE i INT DEFAULT 1;
+-> DECLARE xml VARCHAR(25) DEFAULT '<a>X</a><a>Y</a><a>Z</a>';
+->
+-> WHILE i < 4 DO
+-> SELECT xml, i, ExtractValue(xml, '//a[$i]');
+-> SET i = i+1;
+-> END WHILE;
+-> END |
+Query OK, 0 rows affected (0.01 sec)
+mysql> DELIMITER ;
+mysql> CALL myproc;
+
+
+
+
+drop function F_GET_LOCATION;
+DELIMITER |
+CREATE FUNCTION F_GET_LOCATION
+(
+  F_ID BIGINT, F_LEVEL INT
+) RETURNS BIGINT
+BEGIN
+
+  DECLARE V_COUNT INT;
+  DECLARE V_I     INT;
+  DECLARE V_LEVEL INT;
+  DECLARE V_RETVAL  BIGINT;
+  DECLARE V_ID    BIGINT;
+
+  IF F_ID IS NULL THEN
+    RETURN NULL;
+  END IF;
+
+  SELECT COUNT(1) INTO V_COUNT FROM XB_LOCATION LC WHERE LC.ID=F_ID LIMIT 1;
+-- 通过LEVEL判断
+  IF V_COUNT > 0 THEN
+    SELECT
+      (SELECT LT.LEVELS FROM XB_LOCATIONTYPE LT WHERE LT.ID=LC.LOCATIONTYPEID) INTO V_LEVEL
+    FROM XB_LOCATION LC WHERE LC.ID=F_ID;
+    IF V_LEVEL=F_LEVEL THEN
+      set V_RETVAL = F_ID;
+    END IF;
+    IF V_LEVEL=0 THEN
+      set V_LEVEL = F_LEVEL+1;
+    END IF;
+    IF V_LEVEL>F_LEVEL THEN
+      set V_ID = F_ID;
+      set V_I = 1;
+	   WHILE (V_I <= 10 AND V_LEVEL!=F_LEVEL) DO
+        SELECT LC.PARENTID INTO V_ID FROM XB_LOCATION LC WHERE LC.ID=V_ID;
+        SELECT
+          (SELECT LT.LEVELS FROM XB_LOCATIONTYPE LT WHERE LT.ID=LC.LOCATIONTYPEID) INTO V_LEVEL
+        FROM XB_LOCATION LC WHERE LC.ID=V_ID;
+        set V_I = V_I+1;
+	    SET V_I = V_I+1;
+	   END WHILE;
+      set V_RETVAL = V_ID;
+
+    END IF;
+
+  END IF;
+  RETURN V_RETVAL;
+END|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DELIMITER //
+CREATE FUNCTION SimpleCompare(n INT, m INT)
+RETURNS VARCHAR(20)
+BEGIN
+DECLARE s VARCHAR(20);
+IF n > m THEN SET s = '>';
+ELSEIF n = m THEN SET s = '=';
+ELSE SET s = '<';
+END IF;
+SET s = CONCAT(n, ' ', s, ' ', m);
+RETURN s;
+END //
+DELIMITER ;
+As with other flow-control constructs, IF ... END IF blocks may be nested within other flow-control constructs, including other
+IF statements. Each IF must be terminated by its own END IF followed by a semicolon. You can use indentation to make nested
+flow-control blocks more easily readable by humans (although this is not required by MySQL), as shown here:
+DELIMITER //
+CREATE FUNCTION VerboseCompare (n INT, m INT)
+RETURNS VARCHAR(50)
+BEGIN
+DECLARE s VARCHAR(50);
+IF n = m THEN SET s = 'equals';
+ELSE
+IF n > m THEN SET s = 'greater';
+ELSE SET s = 'less';
+END IF;
+SET s = CONCAT('is ', s, ' than');
+END IF;
+SQL Statement Syntax
+1166
+SET s = CONCAT(n, ' ', s, ' ', m, '.');
+RETURN s;
+END //
+DELIMITER ;
+
+
+
+
+---时间、日期
+select date_format(now(),'%Y-%m-%d');
+
+
+-- 批量索引
+select upper(concat('create index ',t.index_name,' on ', t.table_name, '(', t.column_name,');')) from INFORMATION_SCHEMA.STATISTICS t
+where t.table_schema = 'factdb'
+
+
+CREATE INDEX idx_xsroom_entityid ON xs_room(entityid);
+CREATE INDEX idx_xsoutdooraddress_entityid ON xs_outdooraddress(entityid);
+
+
+
+
+update pdi_telant.r_note nt set nt.value_str = 
+(select replace(nt.value_str,'XB_LOCATION',sa.value_str) from pdi_telant.r_trans_note n, pdi_telant.r_step t, pdi_telant.r_step_attribute sa
+where n.id_transformation = t.id_transformation
+  and t.id_step = sa.id_step
+  and t.id_step_type = 203
+  and sa.code = 'table'
+  and n.id_note = nt.id_note
+)
+where exists
+(select replace(nt.value_str,'XB_LOCATION',sa.value_str) from pdi_telant.r_trans_note n, pdi_telant.r_step t, pdi_telant.r_step_attribute sa
+where n.id_transformation = t.id_transformation
+  and t.id_step = sa.id_step
+  and t.id_step_type = 203
+  and sa.code = 'table'
+  and n.id_note = nt.id_note
+)
+;
+
+
+update pdi_rm_gz_repo.r_step_attribute t set t.value_num = 9 where t.id_step in 
+(
+SELECT t.id_step FROM pdi_rm_gz_repo.r_step t where t.name like '写到 [%'
+) and t.code = 'id_connection';
+
+update pdi_rm_gz_repo.r_step_database t set t.id_database = 9 where t.id_step in 
+(
+SELECT t.id_step FROM pdi_rm_gz_repo.r_step t where t.name like '写到 [%'
+) ---and t.code = 'id_connection'
+;
+
+
+
+
+update r_jobentry_attribute s_jea, r_jobentry s_je, r_job s_j,
+       r_jobentry_attribute c_jea, r_jobentry c_je, r_job c_j
+   set s_jea.value_str = c_jea.value_str
+ where s_jea.id_jobentry = s_je.id_jobentry
+   and s_je.id_job = s_j.id_job
+   and s_jea.code = 'trans_object_id'
+   and s_je.name like '同步表 [OPT_ROAD_FIBER]'
+   and s_j.name = 'Job_Sync_OPT_ROAD_FIBER'
+   and c_jea.id_jobentry = c_je.id_jobentry
+   and c_je.id_job = c_j.id_job
+   and c_jea.code = 'trans_object_id'
+   and c_je.name like '拷贝数据到 [OPT_ROAD_FIBER]'
+   and c_j.name = 'Job_Sync_OPT_ROAD_FIBER'
+   and s_j.id_job = c_j.id_job;
+
+update r_jobentry_attribute s_jea, r_jobentry s_je, r_job s_j,
+       r_jobentry_attribute c_jea, r_jobentry c_je, r_job c_j
+   set s_jea.value_str = c_jea.value_str
+ where s_jea.id_jobentry = s_je.id_jobentry
+   and s_je.id_job = s_j.id_job
+   and s_jea.code = 'trans_object_id'
+   and s_je.name like '同步表 [OPT_ROAD_PORT_PATH]'
+   and s_j.name = 'Job_Sync_OPT_ROAD_PORT_PATH'
+   and c_jea.id_jobentry = c_je.id_jobentry
+   and c_je.id_job = c_j.id_job
+   and c_jea.code = 'trans_object_id'
+   and c_je.name like '拷贝数据到 [OPT_ROAD_PORT_PATH]'
+   and c_j.name = 'Job_Sync_OPT_ROAD_PORT_PATH'
+   and s_j.id_job = c_j.id_job;
+
+
+
+
+------
+-------
+select s_jea.value_str,d_jea.value_str from pdi_rm_gz.r_jobentry_attribute s_jea, pdi_rm_gz.r_jobentry s_je, pdi_rm_gz.r_job s_j, 
+              pdi_rm_cz.r_jobentry_attribute d_jea, pdi_rm_cz.r_jobentry d_je, pdi_rm_cz.r_job d_j
+where s_jea.id_jobentry = s_je.id_jobentry
+   and s_je.id_job = s_j.id_job
+   and s_jea.code = 'sql'
+   and s_je.name like '创建表 [OPT_OCF]'
+   and s_j.name = 'Job_Sync_OPT_OCF'
+
+   and d_jea.id_jobentry = d_je.id_jobentry
+   and d_je.id_job = d_j.id_job
+   and d_jea.code = 'sql'
+   and d_je.name like '创建表 [OPT_OCF]'
+   and d_j.name = 'Job_Sync_OPT_OCF'
+
+   and s_jea.code = d_jea.code
+   and s_je.name = d_je.name
+   and s_j.name = d_j.name
+;
+
+
+update pdi_rm_gz.r_jobentry_attribute s_jea, pdi_rm_gz.r_jobentry s_je, pdi_rm_gz.r_job s_j, 
+              pdi_rm_cz.r_jobentry_attribute d_jea, pdi_rm_cz.r_jobentry d_je, pdi_rm_cz.r_job d_j
+   set d_jea.value_str = s_jea.value_str
+ where s_jea.id_jobentry = s_je.id_jobentry
+   and s_je.id_job = s_j.id_job
+   and s_jea.code = 'sql'
+   and s_je.name like '创建表 [OPT_OCF]'
+   and s_j.name = 'Job_Sync_OPT_OCF'
+
+   and d_jea.id_jobentry = d_je.id_jobentry
+   and d_je.id_job = d_j.id_job
+   and d_jea.code = 'sql'
+   and d_je.name like '创建表 [OPT_OCF]'
+   and d_j.name = 'Job_Sync_OPT_OCF'
+
+   and s_jea.code = d_jea.code
+   and s_je.name = d_je.name
+   and s_j.name = d_j.name
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

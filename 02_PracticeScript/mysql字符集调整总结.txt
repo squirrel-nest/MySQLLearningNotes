@@ -1,0 +1,18 @@
+mysql collate
+http://www.cnblogs.com/ahauzyy/archive/2012/08/08/3043356.html
+
+
+通常包括一个语言名，并且以_ci（大小写不敏感）、_cs（大小写敏感）或_bin（二元）
+
+
+mysql字符集调整总结
+http://xjsunjie.blog.51cto.com/999372/1355013
+
+
+
+Mysql collate规则：
+
+*_bin: 表示的是binary case sensitive collation，也就是说是区分大小写的
+*_cs: case sensitive collation，区分大小写
+*_ci: case insensitive collation，不区分大小写
+

@@ -1,0 +1,10 @@
+Fluffy	1995/5/15	litter	4 kittens, 3 female, 1 male
+Buffy	1993/6/23	litter	5 puppies, 2 female, 3 male
+Buffy	1994/6/19	litter	3 puppies, 3 female
+Chirpy	1999/3/21	vet	needed beak straightened
+Slim	1997/8/3	vet	broken rib
+Bowser	1991/10/12	kennel	\N
+Fang	1991/10/12	kennel	\N
+Fang	1998/8/28	birthday	Gave him a new chew toy
+Claws	1998/3/17	birthday	Gave him a new flea collar
+Whistler	1998/12/9	birthday	First birthday

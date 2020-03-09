@@ -1,0 +1,93 @@
+8.4.3.1. How MySQL Opens and Closes Tables
+
+13.7.5.40. SHOW VARIABLES Syntax
+
+
+
+
+
+
+show global variables like '%conn%';
+
+show global variables like '%thread%';
+
+show global variables like '%conn%';
+
+show global variables like '%log%'
+
+
+
+SHOW [GLOBAL | SESSION] VARIABLES
+[LIKE 'pattern' | WHERE expr]
+
+shell>mysqladmin variables
+mysql>SHOW VARIABLES
+mysql>SHOW GLOBAL VARIABLES;
+mysql>SHOW GLOBAL VARIABLES like '%key%' ;
+
+SELECT @@GLOBAL.max_connections;
+SHOW GLOBAL STATUS;
+
+5.1.3. Server System Variables.
+Section 5.1.4. Using System Variables.
+
+Within an option file, those variables are set like this:
+[mysqld]
+query_cache_size=16M
+max_allowed_packet=1G
+
+	Section 13.7.4. SET Syntax.
+	Examples:
+		SET sort_buffer_size=10000;
+		SET @@local.sort_buffer_size=10000;
+		SET GLOBAL sort_buffer_size=1000000, SESSION sort_buffer_size=1000000;
+		SET @@sort_buffer_size=1000000;
+		SET @@global.sort_buffer_size=1000000, @@local.sort_buffer_size=1000000;
+
+SET max_connections=10000;
+
+set @@max_connections=10000;
+
+SET GLOBAL max_connections=10000; --ÓÐÐ§
+
+SELECT @@global.sql_mode, @@session.sql_mode, @@sql_mode;
+
+
+
+5.1.5. Server Status Variables
+SHOW GLOBAL STATUS;
+
+Section 8.4.3.1. How MySQL Opens and Closes Tables.
+Section 8.4.3.3. How MySQL Uses Internal Temporary Tables.
+Section 8.11.2. Tuning Server Parameters.
+Section C.5.4.4. Where MySQL Stores Temporary Files.
+
+SELECT @@GLOBAL.max_connections;
+
+SELECT @@GLOBAL.sort_buffer_size;
+
+SELECT @@GLOBAL.key_buffer_size;
+
+SELECT @@GLOBAL.read_rnd_buffer_size;
+
+SELECT @@GLOBAL.max_allowed_packet;
+
+SELECT @@GLOBAL.net_buffer_length;
+
+SELECT @@GLOBAL.read_buffer_size;
+
+SELECT @@GLOBAL.write_buffer_size;--none
+
+SELECT @@GLOBAL.bulk_insert_buffer_size;
+
+Before large pages can be used on Linux, the kernel must be enabled to support them and it is necessary to configure the HugeTLB
+memory pool. For reference, the HugeTBL API is documented in the Documentation/vm/hugetlbpage.txt file of your Linux
+sources.
+
+
+2.11.4. Rebuilding or Repairing Tables or Indexes
+
+check table r_database;
+ANALYZE TABLE r_database;
+OPTIMIZE TABLE r_database;
+REPAIR TABLE r_database;
