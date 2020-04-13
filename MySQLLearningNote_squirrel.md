@@ -132,3 +132,6 @@
           /usr/local/mysql/bin/mysqld --user=_mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --plugin-dir=/usr/local/mysql/lib/plugin --log-error=/usr/local/mysql/data/mysqld.local.err --pid-file=/usr/local/mysql/data/mysqld.local.pid --keyring-file-data=/usr/local/mysql/keyring/keyring --early-plugin-load=keyring_file=keyring_file.so   
      ```
 
+## 临时
+   * MySQL 的 JSON 字段
+      + [11.5 The JSON Data Type](https://dev.mysql.com/doc/refman/8.0/en/json.html)<br>
