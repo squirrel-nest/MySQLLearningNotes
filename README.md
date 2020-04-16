@@ -33,5 +33,23 @@
          character set utf8;
          INSERT INTO customers (fullname, email, address, city, course)
          VALUES ('Java DukeMan', 'duke@java.com', 'Sun Microsystems', 'California', 'Java Enterprise for Beginners');
-       ```
-     
+        ```
+   * 增加字段脚本
+      + ```sql
+           ALTER TABLE customer ADD field_name TEXT;
+        ```
+   * 更改字段脚本
+      + ```sql
+          ALTER TABLE customer CHANGE field_name json_data TEXT;
+
+          ALTER TABLE `web_customer_tracker`.`customer` CHANGE COLUMN `json_data` `user_details` JSON NULL DEFAULT NULL;
+
+          ALTER TABLE `web_customer_tracker`.`customer` CHANGE COLUMN `user_details` `user_detail` JSON NULL DEFAULT NULL;
+        ```
+    * 删除字段脚本
+       + ```sql
+             ALTER TABLE web_customer_tracker.customer DROP COLUMN primaryaddress;
+
+             ALTER TABLE web_customer_tracker.customer DROP COLUMN user_detail;
+         ```
+    
