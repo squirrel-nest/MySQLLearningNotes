@@ -40,16 +40,27 @@
         ```
    * 更改字段脚本
       + ```sql
-          ALTER TABLE customer CHANGE field_name json_data TEXT;
+           ALTER TABLE customer CHANGE field_name json_data TEXT;
 
-          ALTER TABLE `web_customer_tracker`.`customer` CHANGE COLUMN `json_data` `user_details` JSON NULL DEFAULT NULL;
+           ALTER TABLE `web_customer_tracker`.`customer` CHANGE COLUMN `json_data` `user_details` JSON NULL DEFAULT NULL;
 
-          ALTER TABLE `web_customer_tracker`.`customer` CHANGE COLUMN `user_details` `user_detail` JSON NULL DEFAULT NULL;
+           ALTER TABLE `web_customer_tracker`.`customer` CHANGE COLUMN `user_details` `user_detail` JSON NULL DEFAULT NULL;
         ```
-    * 删除字段脚本
-       + ```sql
-             ALTER TABLE web_customer_tracker.customer DROP COLUMN primaryaddress;
+   * 删除字段脚本
+      + ```sql
+           ALTER TABLE web_customer_tracker.customer DROP COLUMN primaryaddress;
 
-             ALTER TABLE web_customer_tracker.customer DROP COLUMN user_detail;
-         ```
+           ALTER TABLE web_customer_tracker.customer DROP COLUMN user_detail;
+        ```
+   * JSON字段的常用操作
+      + ```sql
+           
+          SELECT JSON_EXTRACT(user_details, "$.primaryAddress") AS primaryAddress, JSON_EXTRACT(user_details, "$.nickname") AS nickname
+          FROM customer
+          WHERE JSON_EXTRACT(user_details, "$.nickname") = "micky"
+
+          ALTER TABLE web_customer_tracker.customer ADD COLUMN primaryaddress json GENERATED ALWAYS AS (user_detail->>'$.primaryAddress');
+          ALTER TABLE web_customer_tracker.customer ADD INDEX idx_user_detail (user_detail ASC);
+
+        ```
     
