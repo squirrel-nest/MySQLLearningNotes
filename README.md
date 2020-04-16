@@ -63,4 +63,22 @@
           ALTER TABLE web_customer_tracker.customer ADD INDEX idx_user_detail (user_detail ASC);
 
         ```
+    * 数据操作
+       + 更新数据操作
+          - 注意：需要查看：
+             * ```sql
+                  show variables like 'SQL_SAFE_UPDATES';
+                  
+                  sql_safe_updates	OFF
+                 
+                  -- disable safe update mode
+                  SET SQL_SAFE_UPDATES=0;
+                  -- execute update statement
+                  UPDATE table SET column='value';
+                  -- enable safe update mode
+                  SET SQL_SAFE_UPDATES=1;
+               ```
+          - ```sql
+             update  web_customer_tracker.customer_withjson t set t.email = "xiaomi@mi.com" where t.id = 7;
+            ```
     
