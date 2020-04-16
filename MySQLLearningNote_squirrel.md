@@ -3,6 +3,10 @@
 ## 安装与配置
    * 安装
        + 官网参考
+          - CentOS
+             * [MySQL Community Downloads](https://dev.mysql.com/downloads/file/?id=492677)<br>
+             * 下载脚本
+                + wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.19-el7-x86_64.tar.gz<br>
        + 参考
    * 配置
        + 官网参考
