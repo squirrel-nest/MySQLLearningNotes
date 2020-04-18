@@ -139,3 +139,5 @@
 ## 临时
    * MySQL 的 JSON 字段
       + [11.5 The JSON Data Type](https://dev.mysql.com/doc/refman/8.0/en/json.html)<br>
+   * H2Database 的相关知识
+      + [SQL Grammar](https://h2database.com/html/grammar.html#json)<br>
