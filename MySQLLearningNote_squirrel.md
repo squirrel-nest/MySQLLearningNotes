@@ -17,7 +17,9 @@
          * 方法一
          ```sql
          ./mysqld --datadir=/Users/jennywang/data/mysqldatadev/data_8.0.19 --console # 使用指定数据库
-         ./mysqld --console # 使用默认的数据库，顺序详见MySQL书本第
+         ./mysqld --console # 使用默认的数据库，顺序详见MySQL书本第xx页
+         
+
          ```
       + 停止
          * 方法一
@@ -141,3 +143,4 @@
       + [11.5 The JSON Data Type](https://dev.mysql.com/doc/refman/8.0/en/json.html)<br>
    * H2Database 的相关知识
       + [SQL Grammar](https://h2database.com/html/grammar.html#json)<br>
+      + /Users/jennywang/data/mysqldatadev/data_8.0.19
