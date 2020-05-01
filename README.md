@@ -17,9 +17,24 @@
    * ```sql
          alter table customer convert to character set utf8;
      ```
-## 脚本备忘
+## 脚本备忘 - 创建 Jakarka EE 示例数据库：web_customer_tracker
+   * 创建数据库的脚本 - 注意：因为有的操作系统，如Unix or Linux ,database names are case-sensitive, 因此，规定，创建数据库时，**数据库名称全部用小写**
+      + ```sql
+            use mysql; /*！可以不用 */
+            
+            CREATE DATABASE  IF NOT EXISTS `web_customer_tracker`
+            CHARACTER SET = utf8;
+            
+            USE `web_customer_tracker`;
+
+        ```
+         - 
+         
+         'CREATE DATABASE `web_customer_tracker` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION=''N'' */'
    * 创建 web_customer_tracker.customer 脚本
       + ```sql
+           use web_customer_tracker;
+           
            CREATE  TABLE IF NOT EXISTS customers (
            id INT UNSIGNED NOT NULL AUTO_INCREMENT ,
            fullname VARCHAR(45) NOT NULL ,
