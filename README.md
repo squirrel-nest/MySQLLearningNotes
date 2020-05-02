@@ -114,7 +114,7 @@
                   (5,'Maxwell','Dixon','max@gmail.com'),
                   
                   (6,'wanglai','wang','aaa@sina.com'),
-                  (6,'小米','雷','xiaomi@mi.com');
+                  (7,'小米','雷','xiaomi@mi.com');
                   
                ```
           - 加载数据库的方法 - load 命令
