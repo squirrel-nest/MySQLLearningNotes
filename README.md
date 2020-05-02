@@ -3,6 +3,11 @@
 
 
 # 脚本记录
+## 数据库的指定方法
+   1. 指定数据库
+      * use database_name;
+   2. 对象之前加数据库名称
+      * select * from database_name.table_name;
 ## 查询数据库和表的创建脚本
    * ```sql
          show create database `web_customer_tracker`;
@@ -91,6 +96,30 @@
 
         ```
     * 数据操作
+       + Add 数据记录 - 参考： 3.3.3 Loading Data into a Table
+          - 脚本的方法 - 特别注意：如果没有 Primary Key自动增长设置，ID字段要包括，如果Primary Key设置了 自动增长，则不需要包括ID字段
+             * ```sql
+                use web_customer_tracker;
+                INSERT INTO `customer` VALUES 
+                  (1,'David','Adams','david@gmail.com'),
+                  (2,'John','Doe','john@gmail.com'),
+                  (3,'Ajay','Rao','ajay@gmail.com'),
+                  (4,'Mary','Public','mary@gmail.com'),
+                  (5,'Maxwell','Dixon','max@gmail.com'),
+                  
+                  (6,'wanglai','wang','aaa@sina.com'),
+                  (6,'小米','雷','xiaomi@mi.com');
+                  
+               ```
+          - 加载数据库的方法 - load 命令
+             * ```sql
+                  mysql> use web_customer_tracker;
+                  mysql> LOAD DATA LOCAL INFILE 'E:/JavaEEDev/JavaEELearningCode/lzdata-ee-8-jaxrs-new/src/main/resources/sqlscript/mysql/data_web_customer_tracker.txt' INTO TABLE web_customer_tracker.customer;
+               ```
+       + 清除数据库的方法
+          - 全部删除
+             1. delete的方法
+             2. trancate的方法
        + 更新数据操作
           - 注意：需要查看：
              * ```sql
