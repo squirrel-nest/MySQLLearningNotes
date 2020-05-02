@@ -22,7 +22,7 @@
    * ```sql
          alter table customer convert to character set utf8;
      ```
-## 调用脚本文件的方法
+## 调用脚本文件的方法 - 参见：[Sample_SqlScript_test.txt](https://github.com/huarui0/MySQLLearningNote/blob/master/02_PracticeScript/my_script/Sample_SqlScript_test.txt) 中的例子<br>
    * Terminal命令行模式
       - ```sql
             e:\***\***\lzdata-ee-8-jaxrs-new\src\main\resources\sqlscript\mysql>mysql -u root  -p < database-web_customer_tracker-scripts.sql;
