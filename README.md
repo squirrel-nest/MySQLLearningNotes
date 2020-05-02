@@ -48,7 +48,7 @@
          - 
          
          'CREATE DATABASE `web_customer_tracker` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION=''N'' */'
-   * 创建 web_customer_tracker.customer 脚本
+   * 创建 web_customer_tracker.customer 脚本 - 注意：id MEDIUMINT NOT NULL AUTO_INCREMENT 的使用
       + ```sql
            use web_customer_tracker;
            
@@ -65,6 +65,12 @@
          character set utf8;
          INSERT INTO customers (fullname, email, address, city, course)
          VALUES ('Java DukeMan', 'duke@java.com', 'Sun Microsystems', 'California', 'Java Enterprise for Beginners');
+        ```
+   * 创建表索引
+      + ```sql
+          CREATE INDEX part_of_name ON customer (name(10));
+      
+      
         ```
    * 增加字段脚本
       + ```sql
@@ -119,7 +125,15 @@
        + 清除数据库的方法
           - 全部删除
              1. delete的方法
-             2. trancate的方法
+                * ```sql
+                    use customer_test;
+                    delete from customer_test;
+                  ```
+             2. trancate的方法 - 不用写日志，快速，建议使用
+                * ```sql
+                    use customer_test;
+                    truncate table customer_test;
+                  ```
        + 更新数据操作
           - 注意：需要查看：
              * ```sql
