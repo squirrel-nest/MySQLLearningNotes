@@ -66,7 +66,7 @@
          INSERT INTO customers (fullname, email, address, city, course)
          VALUES ('Java DukeMan', 'duke@java.com', 'Sun Microsystems', 'California', 'Java Enterprise for Beginners');
         ```
-   * 创建表索引
+   * 创建表索引 - 索引比较复杂，需要深入学习。注意 functional key 的使用。 MySQL 8.0.13 and higher 才支持。 -这里没有说明，参考文档
       + ```sql
           CREATE INDEX IDX_CUSTOMER_ ON customer (fullname(10));
       
