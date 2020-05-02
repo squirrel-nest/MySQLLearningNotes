@@ -17,6 +17,13 @@
    * ```sql
          alter table customer convert to character set utf8;
      ```
+## 调用脚本文件的方法
+   * ```sql
+         e:\***\***\lzdata-ee-8-jaxrs-new\src\main\resources\sqlscript\mysql>mysql -u root  -p < database-web_customer_tracker-scripts.sql;
+     ```
+## 加载数据的方法
+   * ```
+     ```
 ## 脚本备忘 - 创建 Jakarka EE 示例数据库：web_customer_tracker
    * 创建数据库的脚本 - 注意：因为有的操作系统，如Unix or Linux ,database names are case-sensitive, 因此，规定，创建数据库时，**数据库名称全部用小写**
       + ```sql
