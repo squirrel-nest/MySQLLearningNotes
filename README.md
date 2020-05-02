@@ -18,9 +18,14 @@
          alter table customer convert to character set utf8;
      ```
 ## 调用脚本文件的方法
-   * ```sql
-         e:\***\***\lzdata-ee-8-jaxrs-new\src\main\resources\sqlscript\mysql>mysql -u root  -p < database-web_customer_tracker-scripts.sql;
-     ```
+   * Terminal命令行模式
+      - ```sql
+            e:\***\***\lzdata-ee-8-jaxrs-new\src\main\resources\sqlscript\mysql>mysql -u root  -p < database-web_customer_tracker-scripts.sql;
+        ```
+   * 终端登陆MySQL模式 - 特别注意：Widnows下，Path不能用反斜杠(\) - 以下语句可行
+      - ```sql
+            source E:/JavaEEDev/JavaEELearningCode/lzdata-ee-8-jaxrs-new/src/main/resources/sqlscript/mysql/mysql_test.sql;
+        ```
 ## 加载数据的方法
    * ```
      ```
