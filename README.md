@@ -68,9 +68,9 @@
         ```
    * 创建表索引
       + ```sql
-          CREATE INDEX part_of_name ON customer (name(10));
+          CREATE INDEX IDX_CUSTOMER_ ON customer (fullname(10));
       
-      
+          CREATE INDEX IDX_CUSTOMER_ID ON CUSTOMER(id) USING BTREE;
         ```
    * 增加字段脚本
       + ```sql
