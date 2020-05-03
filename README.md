@@ -155,7 +155,7 @@
                  ```
 
          - 加载数据的方法 - load 命令 - 与 导入与导出（备份与恢复）的比较。
-            * 关于 LOAD DATA LOCAL 的说明 - 是否应尽量避免使用这个方式？特别是文件在客户端？看文档。。。
+            * 关于 LOAD DATA LOCAL 的说明 - 看文档。。。
                + 参考 - 以官网为准，PDF文档不是最新的，注意。。。
                   - [3.3.3 Loading Data into a Table](https://dev.mysql.com/doc/refman/8.0/en/loading-tables.html)<br> 
                   - [6.1.6 Security Considerations for LOAD DATA LOCAL](https://dev.mysql.com/doc/refman/8.0/en/load-data-local-security.html)<br>
