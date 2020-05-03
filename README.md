@@ -54,26 +54,26 @@
          'CREATE DATABASE `web_customer_tracker` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION=''N'' */'
    * 创建 web_customer_tracker.customer 脚本 - 注意：id MEDIUMINT NOT NULL AUTO_INCREMENT 的使用
       + ```sql
-           use web_customer_tracker;
+            use web_customer_tracker;
            
-               CREATE TABLE `customer` (
-                 `id` int(11) NOT NULL AUTO_INCREMENT,
-                 `first_name` varchar(45) DEFAULT NULL,
-                 `last_name` varchar(45) DEFAULT NULL,
-                 `email` varchar(45) DEFAULT NULL,
-                 PRIMARY KEY (`id`)
-               ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+            CREATE TABLE `customer` (
+              `id` int(11) NOT NULL AUTO_INCREMENT,
+              `first_name` varchar(45) DEFAULT NULL,
+              `last_name` varchar(45) DEFAULT NULL,
+              `email` varchar(45) DEFAULT NULL,
+              PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
-               LOCK TABLES `customer` WRITE;
+            LOCK TABLES `customer` WRITE;
 
-               INSERT INTO `customer` VALUES 
-                  (1,'David','Adams','david@gmail.com'),
-                  (2,'John','Doe','john@gmail.com'),
-                  (3,'Ajay','Rao','ajay@gmail.com'),
-                  (4,'Mary','Public','mary@gmail.com'),
-                  (5,'Maxwell','Dixon','max@gmail.com');
+            INSERT INTO `customer` VALUES 
+               (1,'David','Adams','david@gmail.com'),
+               (2,'John','Doe','john@gmail.com'),
+               (3,'Ajay','Rao','ajay@gmail.com'),
+               (4,'Mary','Public','mary@gmail.com'),
+               (5,'Maxwell','Dixon','max@gmail.com');
 
-               UNLOCK TABLES;
+            UNLOCK TABLES;
 
             # customers 表是 与 customer 表 结构不一样，用 DESCRIBE customers; 查表结构！！
             
