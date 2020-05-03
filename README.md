@@ -13,6 +13,10 @@
          show create database `web_customer_tracker`;
          show create table `customer`;
      ```
+## 查询表结构（
+   * ```sql
+       DESCRIBE customer;
+     ```
 ## 备份表
    * ```sql
          SELECT * FROM web_customer_tracker.customer;
@@ -52,19 +56,40 @@
       + ```sql
            use web_customer_tracker;
            
-           CREATE  TABLE IF NOT EXISTS customers (
-           id INT UNSIGNED NOT NULL AUTO_INCREMENT ,
-           fullname VARCHAR(45) NOT NULL ,
-           email VARCHAR(45) NOT NULL ,
-           address VARCHAR(245) NOT NULL ,
-           city VARCHAR(45) NOT NULL ,
-           course VARCHAR(245) NOT NULL ,
-           PRIMARY KEY (id) )
-         ENGINE = InnoDB
-         COMMENT = 'maintains customer details'
-         character set utf8;
-         INSERT INTO customers (fullname, email, address, city, course)
-         VALUES ('Java DukeMan', 'duke@java.com', 'Sun Microsystems', 'California', 'Java Enterprise for Beginners');
+               CREATE TABLE `customer` (
+                 `id` int(11) NOT NULL AUTO_INCREMENT,
+                 `first_name` varchar(45) DEFAULT NULL,
+                 `last_name` varchar(45) DEFAULT NULL,
+                 `email` varchar(45) DEFAULT NULL,
+                 PRIMARY KEY (`id`)
+               ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+               LOCK TABLES `customer` WRITE;
+
+               INSERT INTO `customer` VALUES 
+                  (1,'David','Adams','david@gmail.com'),
+                  (2,'John','Doe','john@gmail.com'),
+                  (3,'Ajay','Rao','ajay@gmail.com'),
+                  (4,'Mary','Public','mary@gmail.com'),
+                  (5,'Maxwell','Dixon','max@gmail.com');
+
+               UNLOCK TABLES;
+
+            # customers 表是 与 customer 表 结构不一样，用 DESCRIBE customers; 查表结构！！
+            
+            CREATE  TABLE IF NOT EXISTS customers (
+              id INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+              fullname VARCHAR(45) NOT NULL ,
+              email VARCHAR(45) NOT NULL ,
+              address VARCHAR(245) NOT NULL ,
+              city VARCHAR(45) NOT NULL ,
+              course VARCHAR(245) NOT NULL ,
+              PRIMARY KEY (id) )
+            ENGINE = InnoDB
+            COMMENT = 'maintains customer details'
+            character set utf8;
+            INSERT INTO customers (fullname, email, address, city, course)
+            VALUES ('Java DukeMan', 'duke@java.com', 'Sun Microsystems', 'California', 'Java Enterprise for Beginners');
         ```
    * 创建表索引 - 索引比较复杂，需要深入学习。注意 functional key 的使用。 MySQL 8.0.13 and higher 才支持。 -这里没有说明，参考文档
       + ```sql
