@@ -39,18 +39,7 @@
    * ```sql
          alter table customer convert to character set utf8;
      ```
-## 调用脚本文件的方法 - 参见：[Sample_SqlScript_test.txt](https://github.com/huarui0/MySQLLearningNote/blob/master/02_PracticeScript/my_script/Sample_SqlScript_test.txt) 中的例子<br>
-   * Terminal命令行模式
-      - ```sql
-            e:\***\***\lzdata-ee-8-jaxrs-new\src\main\resources\sqlscript\mysql>mysql -u root  -p < database-web_customer_tracker-scripts.sql;
-        ```
-   * 终端登陆MySQL模式 - 特别注意：Widnows下，Path不能用反斜杠(\) - 以下语句可行
-      - ```sql
-            source E:/JavaEEDev/JavaEELearningCode/lzdata-ee-8-jaxrs-new/src/main/resources/sqlscript/mysql/mysql_test.sql;
-        ```
-## 加载数据的方法
-   * ```
-     ```
+
 ## 脚本备忘 - 创建 Jakarka EE 示例数据库：web_customer_tracker
    * 创建数据库的脚本 - 注意：因为有的操作系统，如Unix or Linux ,database names are case-sensitive, 因此，规定，创建数据库时，**数据库名称全部用小写**
       + ```sql
@@ -141,7 +130,7 @@
         ```
     * 数据操作
        + Add 数据记录 - 参考： 3.3.3 Loading Data into a Table
-          - 脚本的方法 - 特别注意：如果没有 Primary Key自动增长设置，ID字段要包括，如果Primary Key设置了 自动增长，则不需要包括ID字段
+          - 直接执行脚本的方法 - 特别注意：如果没有 Primary Key自动增长设置，ID字段要包括，如果Primary Key设置了 自动增长，则不需要包括ID字段
              * ```sql
                 use web_customer_tracker;
                 INSERT INTO `customer` VALUES 
@@ -155,11 +144,26 @@
                   (7,'小米','雷','xiaomi@mi.com');
                   
                ```
-          - 加载数据库的方法 - load 命令
+          - 调用脚本文件的方法（非load，只是执行脚本文件中的脚本） - 例子参见：[Sample_SqlScript_test.txt](https://github.com/huarui0/MySQLLearningNote/blob/master/02_PracticeScript/my_script/Sample_SqlScript_test.txt) 中的例子<br>
+             * >+--------+------+-----------------------------+线下面的例子
+             * Terminal命令行模式
+                - ```sql
+                      e:\***\***\lzdata-ee-8-jaxrs-new\src\main\resources\sqlscript\mysql>mysql -u root  -p < database-web_customer_tracker-scripts.sql;
+                  ```
+             * 终端登陆MySQL模式 - 特别注意：Widnows下，Path不能用反斜杠(\) - 以下语句可行
+                - ```sql
+                      source E:/JavaEEDev/JavaEELearningCode/lzdata-ee-8-jaxrs-new/src/main/resources/sqlscript/mysql/mysql_test.sql;
+                ```
+
+          - 加载数据的方法 - load 命令 - 与 导入与导出（备份与恢复）的比较。
              * ```sql
                   mysql> use web_customer_tracker;
                   mysql> LOAD DATA LOCAL INFILE 'E:/JavaEEDev/JavaEELearningCode/lzdata-ee-8-jaxrs-new/src/main/resources/sqlscript/mysql/data_web_customer_tracker.txt' INTO TABLE web_customer_tracker.customer;
                ```
+          - 导入导出（备份恢复）数据的方法
+
+
+
        + 清除数据库的方法
           - 全部删除
              1. delete的方法
@@ -190,3 +194,33 @@
              update  web_customer_tracker.customer_withjson t set t.email = "xiaomi@mi.com" where t.id = 7;
             ```
     
+## 数据库的备份与恢复
+   * 备份
+      + 
+      + 步骤
+         1. 连接数据库
+            - 注意事项
+               * 连接数据库前，要更改my.cnf（my.ini in widonws system)，将datadir参数（如：datadir=D:/MySqlDataDev/data_8.0.1）更改为要**导出**数据的数据库文件夹
+               * 用于启动数据库的mysql server app，版本要与原来创建数据库的版本一致
+         2. 执行导出脚本
+         ```bash
+             cd D:\MySQLDataDmp
+             mysqldump -u root -p --databases jira > databases_jira.sql
+         ```
+   * 恢复
+      + 
+      + 步骤
+         1. 连接数据库
+            - 注意事项
+               * 连接数据库前，要更改my.cnf（my.ini in widonws system)，将datadir参数（如：datadir=D:/MySqlDataDev/data_8.0.1）更改为要**导入**数据的数据库文件夹
+               * 用于启动数据库的mysql server app，版本要与要导入的数据库的版本一致
+         2. 创建与要导入的数据库的空数据库，如：
+         ```sql
+            CREATE DATABASE jira;
+            commit;
+         ```
+         3. 执行导入脚本
+         ```bash
+             mysql -u root -p jira < D:\MySQLDataDmp\databases_jira.sql;
+         ```
+## 数据库表的备份与恢复
