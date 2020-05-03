@@ -14,9 +14,9 @@
          * 其中：Current database: web_customer_tracker
       2. mysql> select database();
       3. show tables;
-         * +--------------------------------+<br>
+         * +----------------------------------+<br>
            | Tables_in_web_customer_tracker |<br>
-           +--------------------------------+<br>
+           +----------------------------------+<br>
 ## 查询数据库和表的创建脚本
    * ```sql
          show create database `web_customer_tracker`;
