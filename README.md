@@ -8,10 +8,23 @@
       * use database_name;
    2. 对象之前加数据库名称
       * select * from database_name.table_name;
+## 在MySQL下查看当前使用的是哪个数据库
+   * 三种方法
+      1. mysql> status;
+         * 其中：Current database: web_customer_tracker
+      2. mysql> select database();
+      3. show tables;
+         * +--------------------------------+
+           | Tables_in_web_customer_tracker |
+           +--------------------------------+
 ## 查询数据库和表的创建脚本
    * ```sql
          show create database `web_customer_tracker`;
          show create table `customer`;
+     ```
+## 查询数据库和表相关信息 - 参考: 3.4 Getting Information About Databases and Tables
+   * ```sql
+       SELECT DATABASE();
      ```
 ## 查询表结构（Table Schema） - 参考: 3.4 Getting Information About Databases and Tables
    * ```sql
