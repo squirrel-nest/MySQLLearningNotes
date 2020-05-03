@@ -160,6 +160,19 @@
                   - [3.3.3 Loading Data into a Table](https://dev.mysql.com/doc/refman/8.0/en/loading-tables.html)<br> 
                   - [6.1.6 Security Considerations for LOAD DATA LOCAL](https://dev.mysql.com/doc/refman/8.0/en/load-data-local-security.html)<br>
                   - [13.2.7 LOAD DATA Statement](https://dev.mysql.com/doc/refman/8.0/en/load-data.html)<br>
+                     * 关注以下几点（不限于。。。）
+                        1. non-LOCAL case 和 LOCAL case 文件的位置
+                        2. 字符集的设置
+                        3. 字段结束的标志，如是用 Tab 还是用 ","
+                        4. 不同系统，换行符 的使用。。。
+               + 其他参考
+                  - [LOAD DATA INFILE LOCAL doesn't work in MySQL 8.0](https://mita2db.hateblo.jp/entry/2020/01/13/163218) - 一般的处理方法，但不是唯一。。。<br>
+                  - [MySQL load data infile ERROR 1064](https://dba.stackexchange.com/questions/249637/mysql-load-data-infile-error-1064) - 有更多选项的语句，参考，进一步了解，看官方文档的语句说明<br>
+                     * ```sql
+                           # 备注 Before you run statement below, You need to start mysql client program with --local-file
+                           LOAD DATA local-infile '/home/pi/Downloads/load_data_infile.txt' 
+INTO TABLE test_tbl FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';  # LINES TERMINATED 不同的系统有不同的符号，参考官方文档
+                       ```
             * ```sql
                   mysql> use web_customer_tracker;
                   mysql> LOAD DATA LOCAL INFILE 'E:/JavaEEDev/JavaEELearningCode/lzdata-ee-8-jaxrs-new/src/main/resources/sqlscript/mysql/data_web_customer_tracker.txt' INTO TABLE web_customer_tracker.customer;
