@@ -13,7 +13,7 @@
          show create database `web_customer_tracker`;
          show create table `customer`;
      ```
-## 查询表结构（
+## 查询表结构（Table Schema） - 参考: 3.4 Getting Information About Databases and Tables
    * ```sql
        DESCRIBE customer;
      ```
