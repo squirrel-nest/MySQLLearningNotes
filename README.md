@@ -120,65 +120,64 @@
    * JSON字段的常用操作
       + ```sql
            
-          SELECT JSON_EXTRACT(user_details, "$.primaryAddress") AS primaryAddress, JSON_EXTRACT(user_details, "$.nickname") AS nickname
-          FROM customer
-          WHERE JSON_EXTRACT(user_details, "$.nickname") = "micky"
+            SELECT JSON_EXTRACT(user_details, "$.primaryAddress") AS primaryAddress, JSON_EXTRACT(user_details, "$.nickname") AS nickname
+            FROM customer
+            WHERE JSON_EXTRACT(user_details, "$.nickname") = "micky"
 
-          ALTER TABLE web_customer_tracker.customer ADD COLUMN primaryaddress json GENERATED ALWAYS AS (user_detail->>'$.primaryAddress');
-          ALTER TABLE web_customer_tracker.customer ADD INDEX idx_user_detail (user_detail ASC);
-
+            ALTER TABLE web_customer_tracker.customer ADD COLUMN primaryaddress json GENERATED ALWAYS AS (user_detail->>'$.primaryAddress');
+            ALTER TABLE web_customer_tracker.customer ADD INDEX idx_user_detail (user_detail ASC);
         ```
-    * 数据操作
-       + Add 数据记录 - 参考： 3.3.3 Loading Data into a Table
-          - 直接执行脚本的方法 - 特别注意：如果没有 Primary Key自动增长设置，ID字段要包括，如果Primary Key设置了 自动增长，则不需要包括ID字段
-             * ```sql
-                use web_customer_tracker;
-                INSERT INTO `customer` VALUES 
-                  (1,'David','Adams','david@gmail.com'),
-                  (2,'John','Doe','john@gmail.com'),
-                  (3,'Ajay','Rao','ajay@gmail.com'),
-                  (4,'Mary','Public','mary@gmail.com'),
-                  (5,'Maxwell','Dixon','max@gmail.com'),
-                  
-                  (6,'wanglai','wang','aaa@sina.com'),
-                  (7,'小米','雷','xiaomi@mi.com');
-                  
-               ```
-          - 调用脚本文件的方法（非load，只是执行脚本文件中的脚本） - 例子参见：[Sample_SqlScript_test.txt](https://github.com/huarui0/MySQLLearningNote/blob/master/02_PracticeScript/my_script/Sample_SqlScript_test.txt) 中的例子<br>
-             * >+--------+------+-----------------------------+线下面的例子
-             * Terminal命令行模式
-                - ```sql
-                      e:\***\***\lzdata-ee-8-jaxrs-new\src\main\resources\sqlscript\mysql>mysql -u root  -p < database-web_customer_tracker-scripts.sql;
-                  ```
-             * 终端登陆MySQL模式 - 特别注意：Widnows下，Path不能用反斜杠(\) - 以下语句可行
-                - ```sql
-                      source E:/JavaEEDev/JavaEELearningCode/lzdata-ee-8-jaxrs-new/src/main/resources/sqlscript/mysql/mysql_test.sql;
-                ```
+   * 数据操作
+      + Add 数据记录 - 参考： 3.3.3 Loading Data into a Table
+         - 直接执行脚本的方法 - 特别注意：如果没有 Primary Key自动增长设置，ID字段要包括，如果Primary Key设置了 自动增长，则不需要包括ID字段
+            * ```sql
+                  use web_customer_tracker;
+                 INSERT INTO `customer` VALUES 
+                   (1,'David','Adams','david@gmail.com'),
+                   (2,'John','Doe','john@gmail.com'),
+                   (3,'Ajay','Rao','ajay@gmail.com'),
+                   (4,'Mary','Public','mary@gmail.com'),
+                   (5,'Maxwell','Dixon','max@gmail.com'),
+                     
+                   (6,'wanglai','wang','aaa@sina.com'),
+                   (7,'小米','雷','xiaomi@mi.com');
+                   
+              ```
+         - 调用脚本文件的方法（非load，只是执行脚本文件中的脚本） - 例子参见：[Sample_SqlScript_test.txt](https://github.com/huarui0/MySQLLearningNote/blob/master/02_PracticeScript/my_script/Sample_SqlScript_test.txt) 中的例子<br>
+            * >+--------+------+-----------------------------+线下面的例子
+            * Terminal命令行模式
+               - ```sql
+                     e:\***\***\lzdata-ee-8-jaxrs-new\src\main\resources\sqlscript\mysql>mysql -u root  -p < database-web_customer_tracker-scripts.sql;
+                 ```
+            * 终端登陆MySQL模式 - 特别注意：Widnows下，Path不能用反斜杠(\) - 以下语句可行
+               - ```sql
+                     source E:/JavaEEDev/JavaEELearningCode/lzdata-ee-8-jaxrs-new/src/main/resources/sqlscript/mysql/mysql_test.sql;
+                 ```
 
-          - 加载数据的方法 - load 命令 - 与 导入与导出（备份与恢复）的比较。
-             * ```sql
+         - 加载数据的方法 - load 命令 - 与 导入与导出（备份与恢复）的比较。
+            * ```sql
                   mysql> use web_customer_tracker;
                   mysql> LOAD DATA LOCAL INFILE 'E:/JavaEEDev/JavaEELearningCode/lzdata-ee-8-jaxrs-new/src/main/resources/sqlscript/mysql/data_web_customer_tracker.txt' INTO TABLE web_customer_tracker.customer;
-               ```
-          - 导入导出（备份恢复）数据的方法
+              ```
+         - 导入导出（备份恢复）数据的方法
 
 
 
-       + 清除数据库的方法
-          - 全部删除
-             1. delete的方法
-                * ```sql
-                    use customer_test;
-                    delete from customer_test;
-                  ```
-             2. trancate的方法 - 不用写日志，快速，建议使用
-                * ```sql
-                    use customer_test;
+      + 清除数据库的方法
+         - 全部删除
+            1. delete的方法
+               * ```sql
+                     use customer_test;
+                     delete from customer_test;
+                 ```
+            2. trancate的方法 - 不用写日志，快速，建议使用
+               * ```sql
+                     use customer_test;
                     truncate table customer_test;
-                  ```
-       + 更新数据操作
-          - 注意：需要查看：
-             * ```sql
+                 ```
+      + 更新数据操作
+         - 注意：需要查看：
+            * ```sql
                   show variables like 'SQL_SAFE_UPDATES';
                   
                   sql_safe_updates	OFF
@@ -189,11 +188,10 @@
                   UPDATE table SET column='value';
                   -- enable safe update mode
                   SET SQL_SAFE_UPDATES=1;
-               ```
-          - ```sql
-             update  web_customer_tracker.customer_withjson t set t.email = "xiaomi@mi.com" where t.id = 7;
-            ```
-    
+              ```
+         - ```sql
+               update  web_customer_tracker.customer_withjson t set t.email = "xiaomi@mi.com" where t.id = 7;
+           ```
 ## 数据库的备份与恢复
    * 备份
       + 
