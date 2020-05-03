@@ -13,7 +13,7 @@
       1. mysql> status;
          * 其中：Current database: web_customer_tracker
       2. mysql> select database();
-      3. show tables;
+      3. mysql> show tables;
          * +----------------------------------+<br>
            | Tables_in_web_customer_tracker |<br>
            +----------------------------------+<br>
