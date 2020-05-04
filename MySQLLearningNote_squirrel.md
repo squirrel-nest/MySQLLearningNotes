@@ -34,8 +34,8 @@
      ```
       + 远程连接
       ```sql
-          CREATE USER 'root'@'192.168.1.6' IDENTIFIED BY 'root123'; # 创建用户
-          GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.1.6'; # 赋予用户权限
+          CREATE USER 'root'@'192.168.*.*' IDENTIFIED BY '******'; # 创建用户
+          GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.*.*'; # 赋予用户权限
        
        # 成功后会出现这行代码
        # Query OK, 0 rows affected (0.02 sec)
