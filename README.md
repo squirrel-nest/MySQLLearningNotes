@@ -180,7 +180,7 @@
                      mysql> use web_customer_tracker;
                      mysql> LOAD DATA LOCAL INFILE 'E:/JavaEEDev/JavaEELearningCode/lzdata-ee-8-jaxrs-new/src/main/resources/sqlscript/mysql/data_web_customer_tracker.txt' INTO TABLE web_customer_tracker.customer;
                  ```
-         - [4.5.5 mysqlimport — A Data Import Program](https://dev.mysql.com/doc/refman/8.0/en/mysqlimport.html)<br>
+         - 使用导入工具mysqlimport。 参考：[4.5.5 mysqlimport — A Data Import Program](https://dev.mysql.com/doc/refman/8.0/en/mysqlimport.html)<br>
          - 导入导出（备份恢复）数据的方法，参见：[数据库的备份与恢复](#数据库的备份与恢复)<br>
 
 
