@@ -165,6 +165,8 @@
                         2. 字符集的设置
                         3. 字段结束的标志，如是用 Tab 还是用 ","
                         4. 不同系统，换行符 的使用。。。
+                        5. 与 [13.2.10.1 SELECT ... INTO Statement](https://dev.mysql.com/doc/refman/8.0/en/select-into.html) 的 关系，及 SELECT ... INTO 语句的使用<br>
+                        6. 与 [mysqlimport — A Data Import Program](https://dev.mysql.com/doc/refman/8.0/en/mysqlimport.html) 用法比较<br>
                + 其他参考
                   - [LOAD DATA INFILE LOCAL doesn't work in MySQL 8.0](https://mita2db.hateblo.jp/entry/2020/01/13/163218) - 一般的处理方法，但不是唯一。。。<br>
                   - [MySQL load data infile ERROR 1064](https://dba.stackexchange.com/questions/249637/mysql-load-data-infile-error-1064) - 有更多选项的语句，参考，进一步了解，看官方文档的语句说明<br>
@@ -173,10 +175,12 @@
                            LOAD DATA local-infile '/home/pi/Downloads/load_data_infile.txt' 
 INTO TABLE test_tbl FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';  # LINES TERMINATED 不同的系统有不同的符号，参考官方文档
                        ```
-            * ```sql
-                  mysql> use web_customer_tracker;
-                  mysql> LOAD DATA LOCAL INFILE 'E:/JavaEEDev/JavaEELearningCode/lzdata-ee-8-jaxrs-new/src/main/resources/sqlscript/mysql/data_web_customer_tracker.txt' INTO TABLE web_customer_tracker.customer;
-              ```
+            * 例子
+               + ```sql
+                     mysql> use web_customer_tracker;
+                     mysql> LOAD DATA LOCAL INFILE 'E:/JavaEEDev/JavaEELearningCode/lzdata-ee-8-jaxrs-new/src/main/resources/sqlscript/mysql/data_web_customer_tracker.txt' INTO TABLE web_customer_tracker.customer;
+                 ```
+         - [4.5.5 mysqlimport — A Data Import Program](https://dev.mysql.com/doc/refman/8.0/en/mysqlimport.html)<br>
          - 导入导出（备份恢复）数据的方法，参见：[数据库的备份与恢复](#数据库的备份与恢复)<br>
 
 
