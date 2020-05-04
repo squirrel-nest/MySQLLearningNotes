@@ -173,7 +173,7 @@
                      * ```sql
                            # 备注 Before you run statement below, You need to start mysql client program with --local-file
                            LOAD DATA local-infile '/home/pi/Downloads/load_data_infile.txt' 
-INTO TABLE test_tbl FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';  # LINES TERMINATED 不同的系统有不同的符号，参考官方文档
+                           INTO TABLE test_tbl FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';  # LINES TERMINATED 不同的系统有不同的符号，参考官方文档
                        ```
             * 例子
                + ```sql
