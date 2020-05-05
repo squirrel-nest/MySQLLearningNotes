@@ -13,7 +13,7 @@
        + 参考
 ## 数据库管理
    * 数据库启动与停止
-      + 启动
+      + 启动 - 查启动时加载的 my.cnf 文件：mysql --help | grep my.cnf
          * 方法一
          ```sql
          ./mysqld --datadir=/Users/jennywang/data/mysqldatadev/data_8.0.19 --console # 使用指定数据库
