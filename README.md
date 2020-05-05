@@ -1,7 +1,7 @@
 # mySQLNotes
 ## 一些资料
    * 参考
-      + [How to Install MySQL 8.0 (on Windows, macOS, Ubuntu) and Get Started with SQL Programming](https://www3.ntu.edu.sg/home/ehchua/programming/sql/MySQL_HowTo.html) - 新加坡南洋科技大学 的 学习资料<br>
+      + [How to Install MySQL 8.0 (on Windows, macOS, Ubuntu) and Get Started with SQL Programming](https://www3.ntu.edu.sg/home/ehchua/programming/sql/MySQL_HowTo.html) - [Nanyang Technological University(新加坡南洋科技大学)](https://www.ntu.edu.sg/Pages/home.aspx)<br> 的 学习资料<br>
 
 
 # 脚本记录
