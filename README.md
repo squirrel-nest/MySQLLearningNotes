@@ -1,5 +1,7 @@
 # mySQLNotes
-
+## 一些资料
+   * 参考
+      + [How to Install MySQL 8.0 (on Windows, macOS, Ubuntu) and Get Started with SQL Programming](https://www3.ntu.edu.sg/home/ehchua/programming/sql/MySQL_HowTo.html) - 新加坡南洋科技大学 的 学习资料<br>
 
 
 # 脚本记录
@@ -244,3 +246,5 @@
              mysql -u root -p jira < D:\MySQLDataDmp\databases_jira.sql;
          ```
 ## 数据库表的备份与恢复
+   * 参考
+      + [15.6.1.3 Importing InnoDB Tables](https://dev.mysql.com/doc/refman/8.0/en/innodb-table-import.html)<br>
