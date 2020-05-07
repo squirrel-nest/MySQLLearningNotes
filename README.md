@@ -16,14 +16,16 @@
          * 其中：Current database: web_customer_tracker
       2. mysql> select database();
       3. mysql> show tables;
-         * +----------------------------------+<br>
-           | Tables_in_web_customer_tracker |<br>
-           +----------------------------------+<br>
+         * |----------------------------------|
+           | Tables_in_web_customer_tracker |
+           |----------------------------------|
 ## 查询数据库和表的创建脚本
    * ```sql
          show create database `web_customer_tracker`;
          show create table `customer`;
      ```
+   * MySQL Workbench
+      + 右键 --> Copy to Clipboard --> Create Statement
 ## 查询数据库和表相关信息 - 参考: 3.4 Getting Information About Databases and Tables
    * ```sql
        SELECT DATABASE();
@@ -37,11 +39,37 @@
          SELECT * FROM web_customer_tracker.customer;
          create table web_customer_tracker.customer_withjson as select * from web_customer_tracker.customer;
      ```
+## 查询数据库或表的编码格式
+   * 参考
+      + 
 ## 更改数据库或表的编码格式
    * ```sql
          alter table customer convert to character set utf8;
      ```
+## Check the MySQL server startup configuration -> [Check the MySQL server startup configuration](https://dasini.net/blog/2019/06/11/check-the-mysql-server-startup-configuration/)<br>
+   * 查询数据库服务器的相关信息
+      + ```bash
+            mysqld --help --verbose | head -n13
+        ```
+   * 查数据库是否有错误
+      + ```bash
+           mysqld --validate-config
+           mysqld --validate-config --fake-option
+           `# 验证配置文件是否有错误`
+           mysqld --defaults-file=/etc/my.cnf --validate-config
+        ```
 
+   * 查数据库是否有错误
+      + ```bash
+           
+        ```
+   *
+
+   * 查数据库是否有错误
+      + ```bash
+           
+        ```
+   *
 ## 脚本备忘 - 创建 Jakarka EE 示例数据库：web_customer_tracker
    * 创建数据库的脚本 - 注意：因为有的操作系统，如Unix or Linux ,database names are case-sensitive, 因此，规定，创建数据库时，**数据库名称全部用小写**
       + ```sql
