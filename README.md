@@ -41,10 +41,18 @@
      ```
 ## 查询数据库或表的编码格式
    * 参考
-      + [6.6 Using Character Sets and Unicode](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-charsets.html)<br>
-      + [Chapter 16 Troubleshooting Connector/J Applications](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-usagenotes-troubleshooting.html)<br>
       + 查编码格式的方法：[Character Set Support](https://pingcap.com/docs/v2.1/reference/sql/character-set/)<br>
       + 过时的编码：[WL13068: Deprecate BINARY keyword for specifying bin collations](https://dev.mysql.com/worklog/task/?id=13068)<br>
+## 数据库编码 与 Java 开发
+   * 参考
+      + [6.6 Using Character Sets and Unicode](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-charsets.html)<br>
+      + [Chapter 16 Troubleshooting Connector/J Applications](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-usagenotes-troubleshooting.html)<br>
+      
+   * 编码问题解决方法 - 先看  MySQL 简史 中的 小故事。。。
+      + [MySQL 简史 - MySql插不进中文，以及IDEA连接MySql出现小段乱码问题](https://www.cnblogs.com/shenzhenhuaya/p/sdfsd.html)<br>
+      + [查询数据中文乱码](https://blog.csdn.net/weixin_41217541/article/details/93870394)<br>
+      + [解决IntelliJ IDEA控制台输出中文乱码问题](https://blog.csdn.net/liu865033503/article/details/81094575)<br>
+
 ## 更改数据库或表的编码格式
    * ```sql
          alter table customer convert to character set utf8;
