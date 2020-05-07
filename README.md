@@ -41,7 +41,8 @@
      ```
 ## 查询数据库或表的编码格式
    * 参考
-      + 
+      + [6.6 Using Character Sets and Unicode](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-charsets.html)<br>
+      + [Chapter 16 Troubleshooting Connector/J Applications](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-usagenotes-troubleshooting.html)<br>
       + 查编码格式的方法：[Character Set Support](https://pingcap.com/docs/v2.1/reference/sql/character-set/)<br>
       + 过时的编码：[WL13068: Deprecate BINARY keyword for specifying bin collations](https://dev.mysql.com/worklog/task/?id=13068)<br>
 ## 更改数据库或表的编码格式
