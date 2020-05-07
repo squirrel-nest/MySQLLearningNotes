@@ -42,11 +42,13 @@
 ## 查询数据库或表的编码格式
    * 参考
       + 
+      + 查编码格式的方法：[Character Set Support](https://pingcap.com/docs/v2.1/reference/sql/character-set/)<br>
+      + 过时的编码：[WL13068: Deprecate BINARY keyword for specifying bin collations](https://dev.mysql.com/worklog/task/?id=13068)<br>
 ## 更改数据库或表的编码格式
    * ```sql
          alter table customer convert to character set utf8;
      ```
-## Check the MySQL server startup configuration -> [Check the MySQL server startup configuration](https://dasini.net/blog/2019/06/11/check-the-mysql-server-startup-configuration/)<br>
+## Check the MySQL server startup configuration -> [Check the MySQL server startup configuration](https://dasini.net/blog/2019/06/11/check-the-mysql-server-startup-configuration/) or [How to validate server configuration settings.](https://mysqlserverteam.com/how-to-validate-server-configuration-settings/)<br>
    * 查询数据库服务器的相关信息
       + ```bash
             mysqld --help --verbose | head -n13
