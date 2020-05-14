@@ -257,7 +257,7 @@
            ```
       + 用一个表的数据填充另一个表
          - ```sql
-               update  web_customer_tracker.customer_withjson t set t.email = "xiaomi@mi.com" where t.id = 7;
+               insert into web_customer_tracker.person select id, first_name, last_name from web_customer_tracker.customer;
            ```
 
 ## 数据库的备份与恢复 - 备注，要将旧版本的数据库导入新版本，需要参考：[数据库的升级](#数据库的升级) 部分的说明<br>
