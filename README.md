@@ -39,11 +39,16 @@
          SELECT * FROM web_customer_tracker.customer;
          create table web_customer_tracker.customer_withjson as select * from web_customer_tracker.customer;
      ```
-## 查询数据库或表的编码格式
+## 10.10.1 Unicode Character Sets
+   * 参考
+      + [10.10.1 Unicode Character Sets](https://dev.mysql.com/doc/refman/8.0/en/charset-unicode-sets.html)<br>
+      + [Migrate MySQL database to UTF8MB4 character encoding](https://confluence.atlassian.com/fishkb/migrate-mysql-database-to-utf8mb4-character-encoding-962356253.html)<br>
+      + [How to Fix the Collation and Character Set of a MySQL Database](https://confluence.atlassian.com/kb/how-to-fix-the-collation-and-character-set-of-a-mysql-database-744326173.html)<br>
+## 查询数据库或表的编码格式 - Charset的设置请移步
    * 参考
       + 查编码格式的方法：[Character Set Support](https://pingcap.com/docs/v2.1/reference/sql/character-set/)<br>
       + 过时的编码：[WL13068: Deprecate BINARY keyword for specifying bin collations](https://dev.mysql.com/worklog/task/?id=13068)<br>
-## 数据库编码 与 Java 开发
+## 数据库编码 与 Java 开发 - Charset的设置请移步
    * 参考
       + [6.6 Using Character Sets and Unicode](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-charsets.html)<br>
       + [Chapter 16 Troubleshooting Connector/J Applications](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-usagenotes-troubleshooting.html)<br>
@@ -53,7 +58,7 @@
       + [查询数据中文乱码](https://blog.csdn.net/weixin_41217541/article/details/93870394)<br>
       + [解决IntelliJ IDEA控制台输出中文乱码问题](https://blog.csdn.net/liu865033503/article/details/81094575)<br>
 
-## 更改数据库或表的编码格式
+## 更改数据库或表的编码格式 - Charset的设置请移步
    * ```sql
          alter table customer convert to character set utf8;
      ```
