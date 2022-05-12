@@ -1,4 +1,4 @@
-# mySQLNotes
+# MySQL Notes
 ## 一些资料
    * 参考
       + [How to Install MySQL 8.0 (on Windows, macOS, Ubuntu) and Get Started with SQL Programming](https://www3.ntu.edu.sg/home/ehchua/programming/sql/MySQL_HowTo.html) - Nanyang Technological University of Singapore(新加坡南洋科技大学)的 学习资料 --> [Nanyang Technological University(新加坡南洋科技大学)](https://www.ntu.edu.sg/Pages/home.aspx) <br>
