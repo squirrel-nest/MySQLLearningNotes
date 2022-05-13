@@ -265,7 +265,7 @@
                insert into web_customer_tracker.person select id, first_name, last_name from web_customer_tracker.customer;
            ```
 
-## 数据库的备份与恢复 - 备注，要将旧版本的数据库导入新版本，需要参考：[数据库的升级](#数据库的升级) 部分的说明<br>
+## 数据库的备份与恢复 - 备注，要将旧版本的数据库导入新版本，需要参考：<a href="#Database_Upgrade">数据库的升级</a> 部分的说明<br>
    * 备份
       + 
       + 步骤
@@ -297,6 +297,6 @@
 ## 数据库表的备份与恢复
    * 参考
       + [15.6.1.3 Importing InnoDB Tables](https://dev.mysql.com/doc/refman/8.0/en/innodb-table-import.html)<br>
-## 数据库的升级
+## <a id="Database_Upgrade">数据库的升级</a>
    * 参考
       + [2.11.5 Preparing Your Installation for Upgrade](https://dev.mysql.com/doc/refman/8.0/en/upgrade-prerequisites.html)<br>
